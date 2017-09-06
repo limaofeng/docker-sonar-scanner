@@ -15,6 +15,9 @@ RUN apk update \
   && unzip ${SONAR_SCANNER_PACKAGE} \
   && rm ${SONAR_SCANNER_PACKAGE}
 
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod u+x /entrypoint.sh
+
 RUN addgroup sonar \
   && adduser -D -s /usr/sbin/nologin -h ${SONAR_SCANNER_HOME} -G sonar sonar \
   && chown -R sonar:sonar ${SONAR_SCANNER_HOME} \
@@ -24,8 +27,5 @@ RUN addgroup sonar \
 USER sonar
 
 WORKDIR /builds
-
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
