@@ -11,7 +11,7 @@ OPTS="-Dsonar.gitlab.project_id=${CI_PROJECT_ID} -Dsonar.gitlab.commit_sha=${CI_
 # TODO: Improve entrypoint to support gitlab-runner
 cd ${CI_PROJECT_DIR}
 if [[ ! -z $SONAR_TOKEN ]]; then
-  ${SONAR_SCANNER_HOME}/bin/sonar-scanner -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${PROJECT_KEY} -Dsonar.projectName=${PROJECT_NAME} -Dsonar.projectVersion=${VERSION} -Dsonar.sources=${CI_PROJECT_DIR}
+  ${SONAR_SCANNER_HOME}/bin/sonar-scanner -X -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${PROJECT_KEY} -Dsonar.projectName=${PROJECT_NAME} -Dsonar.projectVersion=${VERSION} -Dsonar.sources=${CI_PROJECT_DIR}
 else
-  ${SONAR_SCANNER_HOME}/bin/sonar-scanner ${OPTS}
+  ${SONAR_SCANNER_HOME}/bin/sonar-scanner -X ${OPTS}
 fi
