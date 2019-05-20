@@ -4,14 +4,14 @@ MAINTAINER 李茂峰 limaofeng@msn.com
 
 ENV SONAR_SCANNER_VERSION 3.3.0.1492
 ENV SONAR_SCANNER_HOME /opt/sonar-scanner-${SONAR_SCANNER_VERSION}
-ENV SONAR_SCANNER_PACKAGE sonar-scanner-${SONAR_SCANNER_VERSION}.zip
+ENV SONAR_SCANNER_PACKAGE sonar-scanner-cli-${SONAR_SCANNER_VERSION}.zip
 ENV HOME ${SONAR_SCANNER_HOME}
 
 WORKDIR /opt
 
 RUN apk update \
   && apk add bash wget ca-certificates unzip \
-  && wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/${SONAR_SCANNER_PACKAGE} \
+  && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SONAR_SCANNER_PACKAGE} \
   && unzip ${SONAR_SCANNER_PACKAGE} \
   && rm ${SONAR_SCANNER_PACKAGE}
 
